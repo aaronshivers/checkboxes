@@ -51,9 +51,7 @@ export class TeamService {
     const teamIndex: number = this.getTeamIndex(teamId);
     const team: Team = this.teams[teamIndex];
 
-    const lead = this.employeeService.getEmployee(leadId);
-    console.log(lead);
-    team.lead = lead;
+    team.lead = this.employeeService.getEmployee(leadId);
   }
 
   addMember(teamId: number, employee: Employee): void {
