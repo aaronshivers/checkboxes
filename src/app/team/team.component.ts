@@ -62,8 +62,8 @@ export class TeamComponent implements OnInit, OnDestroy {
     return this.team.members.findIndex(member => member.id === id) >= 0;
   }
 
-  onUpdateLead(event: any) {
-    const leadId: number = event.target.value;
+  onUpdateLead(event: CustomEvent) {
+    const leadId: number = +(event.target as HTMLSelectElement).value;
     this.teamService.updateLead(this.team.id, leadId);
   }
 }
