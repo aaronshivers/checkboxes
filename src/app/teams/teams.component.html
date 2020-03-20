@@ -1,0 +1,12 @@
+<h1>Teams</h1>
+
+<ul>
+  <li *ngFor="let team of teams">
+    <a [routerLink]="[team.id]">{{ team.id }} - {{ team.name }}</a>
+    <ul>
+      <li *ngFor="let member of team.members">
+        {{ member.id }} - {{ member.name }}
+      </li>
+    </ul>
+  </li>
+</ul>

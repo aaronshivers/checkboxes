@@ -1,0 +1,9 @@
+<h1>Team</h1>
+
+<p>{{ team.id }} - {{ team.name }}</p>
+
+<ul>
+  <li *ngFor="let member of team.members">
+    {{ member.id }} - {{ member.name }}
+  </li>
+</ul>
