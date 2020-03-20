@@ -5,6 +5,16 @@
 <h2>Team Lead</h2>
 <p>{{ team.lead.id }} {{ team.lead.name }}</p>
 
+<label>
+  Select a Lead
+  <select name="lead">
+    <option>Please Select A Lead</option>
+    <option *ngFor="let employee of employees" [value]="employee" [selected]="employee.id === team.lead.id">
+      {{ employee.id }} - {{ employee.name }}
+    </option>
+  </select>
+</label>
+
 <h2>Team Members</h2>
 
 <ul>

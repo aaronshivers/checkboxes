@@ -7,7 +7,7 @@ const TEAMS: Team[] = [
   {
     id: 1,
     name: 'team 1',
-    lead: { id: 1, name: 'bob' },
+    lead: { id: 2, name: 'sally' },
     members: [
       { id: 1, name: 'bob' },
       { id: 2, name: 'sally' },
@@ -44,7 +44,14 @@ export class TeamService {
     return of(team);
   }
 
-  addMember(teamId: number, employee: Employee) {
+  updateLead(teamId: number, lead: Employee): void {
+    const teamIndex: number = this.getTeamIndex(teamId);
+    const team: Team = this.teams[teamIndex];
+    console.log(team);
+    team.lead = lead;
+  }
+
+  addMember(teamId: number, employee: Employee): void {
     const teamIndex: number = this.getTeamIndex(teamId);
     const team: Team = this.teams[teamIndex];
 
