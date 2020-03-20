@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Team } from './team';
 import { Observable, of } from 'rxjs';
 import { Employee } from '../employees/employee';
+import { EmployeeService } from '../employees/employee.service';
 
 const TEAMS: Team[] = [
   {
@@ -30,7 +31,9 @@ const TEAMS: Team[] = [
 export class TeamService {
   teams: Team[] = TEAMS;
 
-  constructor() {
+  constructor(
+    private employeeService: EmployeeService
+  ) {
   }
 
   getTeams(): Observable<Team[]> {
@@ -44,10 +47,12 @@ export class TeamService {
     return of(team);
   }
 
-  updateLead(teamId: number, lead: Employee): void {
+  updateLead(teamId: number, leadId: number): void {
     const teamIndex: number = this.getTeamIndex(teamId);
     const team: Team = this.teams[teamIndex];
-    console.log(team);
+
+    const lead = this.employeeService.getEmployee(leadId);
+    console.log(lead);
     team.lead = lead;
   }
 

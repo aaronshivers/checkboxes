@@ -7,9 +7,12 @@
 
 <label>
   Select a Lead
-  <select name="lead">
+  <select name="lead" (change)="onUpdateLead($event)">
     <option>Please Select A Lead</option>
-    <option *ngFor="let employee of employees" [value]="employee" [selected]="employee.id === team.lead.id">
+    <option
+      *ngFor="let employee of employees" [value]="employee.id"
+      [selected]="employee.id === team.lead.id"
+    >
       {{ employee.id }} - {{ employee.name }}
     </option>
   </select>
@@ -30,7 +33,8 @@
     <input
       (change)="onUpdateMember(employee)"
       [checked]="isMember(employee.id)"
-      type="checkbox">
+      type="checkbox"
+    >
     {{ employee.id }} - {{ employee.name }}
   </label>
 </div>

@@ -21,4 +21,13 @@ export class EmployeeService {
   getEmployees(): Observable<Employee[]> {
     return of(this.employees);
   }
+
+  getEmployee(employeeId: number): Employee {
+    const leadIndex: number = this.getEmployeeIndex(employeeId);
+    return this.employees[leadIndex];
+  }
+
+  private getEmployeeIndex(id: number): number {
+    return this.employees.findIndex((employee: Employee) => employee.id === +id);
+  }
 }
