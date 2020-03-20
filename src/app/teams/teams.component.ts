@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Team } from './team';
 import { TeamService } from './team.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-teams',
   templateUrl: './teams.component.html',
   styleUrls: [ './teams.component.css' ]
 })
-export class TeamsComponent implements OnInit {
+export class TeamsComponent implements OnInit, OnDestroy {
   teams: Team[];
+  teamSubscription: Subscription;
 
   constructor(
     private teamService: TeamService
@@ -19,8 +21,12 @@ export class TeamsComponent implements OnInit {
     this.getTeams();
   }
 
+  ngOnDestroy(): void {
+    this.teamSubscription.unsubscribe();
+  }
+
   getTeams(): void {
-    this.teamService.getTeams()
+    this.teamSubscription = this.teamService.getTeams()
       .subscribe((teams: Team[]) => this.teams = teams);
   }
 }

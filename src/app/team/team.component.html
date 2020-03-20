@@ -2,8 +2,19 @@
 
 <p>{{ team.id }} - {{ team.name }}</p>
 
+<h2>Team Members</h2>
+
 <ul>
   <li *ngFor="let member of team.members">
     {{ member.id }} - {{ member.name }}
   </li>
 </ul>
+
+<h2>All Employees</h2>
+
+<div>
+  <label *ngFor="let employee of employees">
+    <input type="checkbox">
+    {{ employee.id }} - {{ employee.name }}
+  </label>
+</div>

@@ -6,6 +6,7 @@ const EMPLOYEES: Employee[] = [
   { id: 1, name: 'bob' },
   { id: 2, name: 'sally' },
   { id: 3, name: 'doug' },
+  { id: 4, name: 'mary' },
 ];
 
 @Injectable({

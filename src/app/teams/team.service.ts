@@ -33,7 +33,7 @@ export class TeamService {
   getTeam(id: number) {
     const teamIndex: number = this.getTeamIndex(id);
     const team: Team = this.teams[teamIndex];
-    console.log(team);
+
     return of(team);
   }
 
