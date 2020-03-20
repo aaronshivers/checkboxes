@@ -5,13 +5,19 @@ import { Employee } from '../employees/employee';
 
 const TEAMS: Team[] = [
   {
-    id: 1, name: 'team 1', members: [
+    id: 1,
+    name: 'team 1',
+    lead: { id: 1, name: 'bob' },
+    members: [
       { id: 1, name: 'bob' },
       { id: 2, name: 'sally' },
     ],
   },
   {
-    id: 2, name: 'team 2', members: [
+    id: 2,
+    name: 'team 2',
+    lead: { id: undefined, name: undefined },
+    members: [
       { id: 1, name: 'bob' },
       { id: 3, name: 'doug' },
     ],
