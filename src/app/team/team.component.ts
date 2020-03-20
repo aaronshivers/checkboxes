@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
-  styleUrls: [ './team.component.css' ]
+  styleUrls: [ './team.component.css' ],
 })
 export class TeamComponent implements OnInit, OnDestroy {
   team: Team;
@@ -20,7 +20,7 @@ export class TeamComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private teamService: TeamService,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
   ) {
   }
 
@@ -48,5 +48,17 @@ export class TeamComponent implements OnInit, OnDestroy {
       .subscribe((employees: Employee[]) => {
         this.employees = employees;
       });
+  }
+
+  onUpdateMember(employee: Employee): void {
+    if (this.isMember(employee.id)) {
+      this.teamService.removeMember(this.team.id, employee);
+    } else {
+      this.teamService.addMember(this.team.id, employee);
+    }
+  }
+
+  isMember(id: number): boolean {
+    return this.team.members.findIndex(member => member.id === id) >= 0;
   }
 }

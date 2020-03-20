@@ -14,7 +14,10 @@
 
 <div>
   <label *ngFor="let employee of employees">
-    <input type="checkbox">
+    <input
+      (change)="onUpdateMember(employee)"
+      [checked]="isMember(employee.id)"
+      type="checkbox">
     {{ employee.id }} - {{ employee.name }}
   </label>
 </div>

@@ -1,24 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Team } from './team';
 import { Observable, of } from 'rxjs';
+import { Employee } from '../employees/employee';
 
 const TEAMS: Team[] = [
   {
     id: 1, name: 'team 1', members: [
       { id: 1, name: 'bob' },
       { id: 2, name: 'sally' },
-    ]
+    ],
   },
   {
     id: 2, name: 'team 2', members: [
       { id: 1, name: 'bob' },
       { id: 3, name: 'doug' },
-    ]
+    ],
   },
 ];
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TeamService {
   teams: Team[] = TEAMS;
@@ -37,7 +38,27 @@ export class TeamService {
     return of(team);
   }
 
+  addMember(teamId: number, employee: Employee) {
+    const teamIndex: number = this.getTeamIndex(teamId);
+    const team: Team = this.teams[teamIndex];
+
+    team.members.push(employee);
+  }
+
+  removeMember(teamId: number, employee: Employee) {
+    const teamIndex: number = this.getTeamIndex(teamId);
+    const team: Team = this.teams[teamIndex];
+
+    const memberIndex: number = this.getMemberIndex(team, employee.id);
+
+    team.members.splice(memberIndex, 1);
+  }
+
   private getTeamIndex(id: number): number {
-    return this.teams.findIndex(team => team.id === id);
+    return this.teams.findIndex((team: Team) => team.id === id);
+  }
+
+  private getMemberIndex(team: Team, memberId: number): number {
+    return team.members.findIndex((member: Employee) => member.id === memberId);
   }
 }
